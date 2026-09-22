@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://joebraiding.com/sitemap.xml
+Sitemap: https://joybraiding.com/sitemap.xml
