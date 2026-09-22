@@ -78,6 +78,14 @@ const services = [
           "addressCountry": "US"
         },
         "areaServed": ["Duluth, GA", "Gwinnett County, GA", "Atlanta metro"],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "08:00",
+            "closes": "19:00"
+          }
+        ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Braiding services",
@@ -88,6 +96,44 @@ const services = [
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Twists" }, "price": "200", "priceCurrency": "USD" }
           ]
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does hair braiding cost?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Box Braids — $180. Knotless Braids — $200. Cornrows — $70. Twists — $200. Final pricing is confirmed when you book." }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book an appointment?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Call or text (605) 585-4899 to book. Visits are by appointment." }
+          },
+          {
+            "@type": "Question",
+            "name": "What are your hours?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Monday through Saturday, 8:00 AM to 7:00 PM. Closed on Sundays." }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are you located?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Joy Braiding is based in Duluth, Georgia, serving Gwinnett County and the Atlanta metro. The exact address is shared when you book your appointment." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you take walk-ins?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Visits are by appointment so every client gets full attention. Call or text ahead to reserve your spot." }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I bring to my appointment?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Just bring yourself — when you book, Joy will let you know if anything is needed for your chosen style." }
+          }
+        ]
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -325,6 +371,31 @@ const services = [
       }
       .cta-band .phone-big:hover { transform: scale(1.04); background: rgba(0,0,0,0.28); }
 
+
+      /* ---------- FAQ ---------- */
+      .faq { max-width: 800px; margin: 0 auto; }
+      .faq details {
+        background: var(--card); border: 1px solid rgba(36,26,18,0.08);
+        border-radius: 14px; margin-bottom: 0.8rem; overflow: hidden;
+        box-shadow: 0 8px 20px -12px rgba(36, 26, 18, 0.2);
+      }
+      .faq summary {
+        cursor: pointer; padding: 1.15rem 1.4rem; font-weight: 700;
+        font-size: 1.05rem; list-style: none; display: flex;
+        justify-content: space-between; align-items: center; gap: 1rem;
+      }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after {
+        content: "+"; font-size: 1.5rem; font-weight: 400; color: var(--gold-deep);
+        flex-shrink: 0; transition: transform 0.15s ease;
+      }
+      .faq details[open] summary::after { transform: rotate(45deg); }
+      .faq summary:hover { color: var(--gold-deep); }
+      .faq .answer { padding: 0 1.4rem 1.3rem; color: var(--muted); }
+      .faq .answer p { margin: 0 0 0.6rem; }
+      .faq .answer p:last-child { margin-bottom: 0; }
+      .faq .answer a { color: var(--gold-deep); font-weight: 700; }
+
       /* ---------- Footer ---------- */
       footer { padding: 2.5rem 0 3rem; color: var(--muted); font-size: 0.92rem; }
       .foot-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
@@ -371,7 +442,7 @@ const services = [
         <div class="wrap hero-grid">
           <div>
             <span class="pill"><span class="dot"></span> Duluth, Georgia</span>
-            <h1>Beautiful braids, <em>done right.</em></h1>
+            <h1>Hair braiding in Duluth, <em>done right.</em></h1>
             <p class="lead">
               Joy Braiding specializes in flawless, long-lasting protective styles —
               from classic box braids to lightweight knotless looks. Neat parts,
@@ -388,7 +459,7 @@ const services = [
             </div>
           </div>
           <div class="hero-photo">
-            <img src="/joe.jpg" alt="Joe — professional hair braider in Duluth, GA" />
+            <img src="/joe.jpg" alt="Joy — professional hair braider in Duluth, GA" />
             <div class="hero-badge">✨ Professional braider</div>
           </div>
         </div>
@@ -440,11 +511,64 @@ const services = [
                   <p>By appointment — call or text</p>
                 </div>
                 <div class="visit-card">
+                  <h4>Hours</h4>
+                  <p>Mon – Sat · 8:00 AM – 7:00 PM<br />Sunday · Closed</p>
+                </div>
+                <div class="visit-card">
                   <h4>Phone</h4>
                   <a href={PHONE_LINK}>{PHONE_DISPLAY}</a>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="block" id="faq" style="padding-top: 0;">
+        <div class="wrap">
+          <p class="kicker" style="text-align: center;">Good to know</p>
+          <h2 class="title" style="text-align: center;">Frequently asked questions</h2>
+          <p class="sub" style="text-align: center; margin-left: auto; margin-right: auto;">
+            Quick answers about pricing, booking, and visiting Joy Braiding in Duluth.
+          </p>
+          <div class="faq">
+            <details>
+              <summary>How much does hair braiding cost?</summary>
+              <div class="answer">
+                <p>Box Braids — $180 · Knotless Braids — $200 · Cornrows — $70 · Twists — $200. Final pricing is confirmed when you book.</p>
+              </div>
+            </details>
+            <details>
+              <summary>How do I book an appointment?</summary>
+              <div class="answer">
+                <p>Call or text <a href={PHONE_LINK}>{PHONE_DISPLAY}</a> and we'll find a time that works for you. Booking is by appointment.</p>
+              </div>
+            </details>
+            <details>
+              <summary>What are your hours?</summary>
+              <div class="answer">
+                <p>Monday through Saturday, 8:00 AM – 7:00 PM. Closed on Sundays.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Where are you located?</summary>
+              <div class="answer">
+                <p>Joy Braiding is based in Duluth, Georgia, serving Gwinnett County and the Atlanta metro. The exact address is shared when you book your appointment.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Do you take walk-ins?</summary>
+              <div class="answer">
+                <p>Visits are by appointment so every client gets full attention. Call or text ahead to reserve your spot.</p>
+              </div>
+            </details>
+            <details>
+              <summary>What should I bring to my appointment?</summary>
+              <div class="answer">
+                <p>Just bring yourself — when you book, Joy will let you know if anything is needed for your chosen style.</p>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -465,7 +589,7 @@ const services = [
       <div class="wrap foot-inner">
         <div>
           <div class="foot-brand">Joy <span>Braiding</span></div>
-          <div>Professional hair braiding in Duluth, GA</div>
+          <div>Professional hair braiding in Duluth, GA<br />Mon – Sat · 8:00 AM – 7:00 PM</div>
         </div>
         <div>© {new Date().getFullYear()} Joy Braiding · Call or text <a href={PHONE_LINK}>{PHONE_DISPLAY}</a></div>
       </div>
