@@ -78,7 +78,10 @@ const services = [
       ::selection { background: var(--gold); color: #fff; }
       img { max-width: 100%; }
       a { color: inherit; }
+
       .wrap { width: min(1120px, 92%); margin: 0 auto; }
+
+      /* ---------- Nav ---------- */
       .nav {
         position: sticky; top: 0; z-index: 50;
         backdrop-filter: blur(14px);
@@ -121,6 +124,8 @@ const services = [
       .btn-outline:hover { border-color: var(--gold); color: var(--gold-deep); }
       .btn-dark { background: var(--espresso); color: var(--cream); }
       .btn-dark:hover { background: var(--espresso-soft); transform: translateY(-2px); }
+
+      /* ---------- Hero ---------- */
       .hero {
         position: relative; overflow: hidden;
         padding: 5.5rem 0 4.5rem;
@@ -159,6 +164,26 @@ const services = [
         color: var(--muted); font-size: 0.95rem; font-weight: 600;
       }
       .hero-meta strong { display: block; color: var(--espresso); font-size: 1.05rem; }
+      .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center; position: relative; z-index: 1; }
+      .hero-photo { position: relative; width: min(400px, 100%); justify-self: end; }
+      .hero-photo::before {
+        content: ""; position: absolute; inset: 30px -26px -26px 26px;
+        background: linear-gradient(135deg, var(--gold), var(--clay));
+        border-radius: 200px 200px 26px 26px; opacity: 0.35;
+      }
+      .hero-photo img {
+        position: relative; width: 100%; height: 520px; object-fit: cover; object-position: top center;
+        border-radius: 200px 200px 24px 24px; border: 6px solid #fff;
+        box-shadow: var(--shadow); display: block;
+      }
+      .hero-badge {
+        position: absolute; left: -34px; bottom: 44px;
+        background: #fff; border: 1px solid rgba(36,26,18,0.08);
+        border-radius: 999px; padding: 0.6rem 1.2rem;
+        font-weight: 800; font-size: 0.9rem; box-shadow: var(--shadow); white-space: nowrap;
+      }
+
+      /* ---------- Sections ---------- */
       section.block { padding: 4.5rem 0; }
       .kicker {
         text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem;
@@ -170,6 +195,8 @@ const services = [
         line-height: 1.1; margin: 0 0 1rem; letter-spacing: -0.01em;
       }
       .sub { color: var(--muted); max-width: 60ch; margin: 0 0 2.5rem; font-size: 1.05rem; }
+
+      /* ---------- Services ---------- */
       .services { background: var(--cream-deep); border-top: 1px solid rgba(36,26,18,0.07); border-bottom: 1px solid rgba(36,26,18,0.07); }
       .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
       .card {
@@ -208,6 +235,8 @@ const services = [
       .card a.book:hover { color: var(--gold-deep); }
       .card a.book::after { content: "→"; transition: transform 0.15s ease; }
       .card a.book:hover::after { transform: translateX(4px); }
+
+      /* ---------- Visit (dark) ---------- */
       .visit { background: var(--espresso); color: var(--cream); border-radius: 28px; }
       .visit .kicker { color: var(--gold); }
       .visit h2.title { color: #fff; }
@@ -222,6 +251,8 @@ const services = [
       .visit-card p { margin: 0; font-size: 1.05rem; font-weight: 600; }
       .visit-card a { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.25rem; }
       .visit-card a:hover { color: var(--gold); }
+
+      /* ---------- CTA ---------- */
       .cta-band {
         background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
         border-radius: 28px; padding: 3.5rem 2.5rem; text-align: center; color: #fff;
@@ -246,15 +277,23 @@ const services = [
         transition: transform 0.15s ease, background 0.15s ease;
       }
       .cta-band .phone-big:hover { transform: scale(1.04); background: rgba(0,0,0,0.28); }
+
+      /* ---------- Footer ---------- */
       footer { padding: 2.5rem 0 3rem; color: var(--muted); font-size: 0.92rem; }
       .foot-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
       .foot-brand { font-weight: 800; color: var(--espresso); font-size: 1.05rem; }
       .foot-brand span { color: var(--gold-deep); }
+
+      /* ---------- Responsive ---------- */
       @media (max-width: 860px) {
         .grid { grid-template-columns: 1fr; }
         .visit-cards { grid-template-columns: 1fr; }
         .nav-links a.link { display: none; }
         .hero { padding: 3.5rem 0 3rem; }
+        .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .hero-photo { justify-self: center; }
+        .hero-photo img { height: 440px; }
+        .hero-badge { left: 8px; }
         section.block { padding: 3rem 0; }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -280,27 +319,35 @@ const services = [
     </header>
 
     <main id="top">
+      <!-- HERO -->
       <section class="hero">
-        <div class="wrap">
-          <span class="pill"><span class="dot"></span> Duluth, Georgia</span>
-          <h1>Beautiful braids, <em>done right.</em></h1>
-          <p class="lead">
-            Joe Braiding specializes in flawless, long-lasting protective styles —
-            from classic box braids to lightweight knotless looks. Neat parts,
-            gentle hands, and styles that turn heads.
-          </p>
-          <div class="hero-ctas">
-            <a class="btn btn-dark" href={PHONE_LINK}>Call or Text to Book</a>
-            <a class="btn btn-outline" href="#services">See services &amp; prices</a>
+        <div class="wrap hero-grid">
+          <div>
+            <span class="pill"><span class="dot"></span> Duluth, Georgia</span>
+            <h1>Beautiful braids, <em>done right.</em></h1>
+            <p class="lead">
+              Joe Braiding specializes in flawless, long-lasting protective styles —
+              from classic box braids to lightweight knotless looks. Neat parts,
+              gentle hands, and styles that turn heads.
+            </p>
+            <div class="hero-ctas">
+              <a class="btn btn-dark" href={PHONE_LINK}>Call or Text to Book</a>
+              <a class="btn btn-outline" href="#services">See services &amp; prices</a>
+            </div>
+            <div class="hero-meta">
+              <div><strong>4 signature styles</strong>Transparent pricing</div>
+              <div><strong>By appointment</strong>Call or text to reserve</div>
+              <div><strong>Duluth, GA</strong>Serving the local community</div>
+            </div>
           </div>
-          <div class="hero-meta">
-            <div><strong>4 signature styles</strong>Transparent pricing</div>
-            <div><strong>By appointment</strong>Call or text to reserve</div>
-            <div><strong>Duluth, GA</strong>Serving the local community</div>
+          <div class="hero-photo">
+            <img src="/joe.jpg" alt="Joe — professional hair braider in Duluth, GA" />
+            <div class="hero-badge">✨ Professional braider</div>
           </div>
         </div>
       </section>
 
+      <!-- SERVICES -->
       <section class="block services" id="services">
         <div class="wrap">
           <p class="kicker">Services &amp; pricing</p>
@@ -325,6 +372,7 @@ const services = [
         </div>
       </section>
 
+      <!-- VISIT -->
       <section class="block" id="visit">
         <div class="wrap">
           <div class="visit">
@@ -354,6 +402,7 @@ const services = [
         </div>
       </section>
 
+      <!-- CTA -->
       <section class="block" id="contact" style="padding-top: 0;">
         <div class="wrap">
           <div class="cta-band">
