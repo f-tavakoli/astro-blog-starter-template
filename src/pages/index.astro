@@ -68,6 +68,7 @@ const services = [
         "image": "https://joybraiding.com/joe.jpg",
         "telephone": "+1-605-585-4899",
         "priceRange": "$70 - $200",
+        "sameAs": ["https://www.facebook.com/braidingjoy"],
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Duluth",
@@ -566,6 +567,10 @@ const services = [
                   <h4>Phone</h4>
                   <a href={PHONE_LINK}>{PHONE_DISPLAY}</a>
                 </div>
+                <div class="visit-card">
+                  <h4>Facebook</h4>
+                  <a href="https://www.facebook.com/braidingjoy" target="_blank" rel="noopener">Follow Joy Braiding</a>
+                </div>
               </div>
             </div>
           </div>
@@ -639,7 +644,7 @@ const services = [
           <div class="foot-brand">Joy <span>Braiding</span></div>
           <div>Professional hair braiding in Duluth, GA<br />Mon – Sat · 8:00 AM – 7:00 PM</div>
         </div>
-        <div>© {new Date().getFullYear()} Joy Braiding · Call or text <a href={PHONE_LINK}>{PHONE_DISPLAY}</a></div>
+        <div>© {new Date().getFullYear()} Joy Braiding · Call or text <a href={PHONE_LINK}>{PHONE_DISPLAY}</a> · <a href="https://www.facebook.com/braidingjoy" target="_blank" rel="noopener">Facebook</a></div>
       </div>
     </footer>
   </body>
