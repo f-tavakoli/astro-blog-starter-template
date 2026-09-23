@@ -39,10 +39,7 @@ const services = [
       name="description"
       content="Joy Braiding — professional hair braiding in Duluth, GA. Box braids, knotless braids, cornrows and twists. Call or text (605) 585-4899 to book."
     />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23241a12'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23c2913b' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="canonical" href="https://joybraiding.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Joy Braiding" />
@@ -189,11 +186,10 @@ const services = [
         display: flex; align-items: center; gap: 0.65rem;
         text-decoration: none; font-weight: 800; letter-spacing: 0.02em;
       }
-      .brand-mark {
-        width: 38px; height: 38px; border-radius: 50%;
-        background: var(--espresso); color: var(--gold);
-        display: grid; place-items: center;
-        font-family: var(--font-display); font-size: 1.35rem; font-weight: 700;
+      .brand-logo {
+        width: 40px; height: 40px; border-radius: 50%;
+        object-fit: cover; border: 2px solid rgba(194, 145, 59, 0.55);
+        box-shadow: 0 4px 12px -4px rgba(36, 26, 18, 0.35);
       }
       .brand-name { font-size: 1.15rem; }
       .brand-name span { color: var(--gold-deep); }
@@ -329,6 +325,22 @@ const services = [
       .card a.book::after { content: "→"; transition: transform 0.15s ease; }
       .card a.book:hover::after { transform: translateX(4px); }
 
+      /* ---------- Work gallery ---------- */
+      .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+      .work-item {
+        margin: 0; border-radius: var(--radius); overflow: hidden;
+        background: var(--card); border: 1px solid rgba(36, 26, 18, 0.06);
+        box-shadow: var(--shadow);
+      }
+      .work-item img {
+        width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+        transition: transform 0.3s ease;
+      }
+      .work-item:hover img { transform: scale(1.05); }
+      .work-item figcaption {
+        padding: 0.85rem 1.15rem; font-weight: 700; font-size: 0.95rem;
+      }
+
       /* ---------- Visit (dark) ---------- */
       .visit { background: var(--espresso); color: var(--cream); border-radius: 28px; }
       .visit .kicker { color: var(--gold); }
@@ -405,6 +417,7 @@ const services = [
       /* ---------- Responsive ---------- */
       @media (max-width: 860px) {
         .grid { grid-template-columns: 1fr; }
+        .work-grid { grid-template-columns: repeat(2, 1fr); }
         .visit-cards { grid-template-columns: 1fr; }
         .nav-links a.link { display: none; }
         .hero { padding: 3.5rem 0 3rem; }
@@ -424,11 +437,12 @@ const services = [
     <header class="nav">
       <div class="wrap nav-inner">
         <a class="brand" href="#top" aria-label="Joy Braiding home">
-          <span class="brand-mark">J</span>
+          <img class="brand-logo" src="/logo.png" alt="Joy Braiding logo" />
           <span class="brand-name">Joy <span>Braiding</span></span>
         </a>
         <nav class="nav-links" aria-label="Primary">
           <a class="link" href="#services">Services</a>
+          <a class="link" href="#work">Work</a>
           <a class="link" href="#visit">Visit</a>
           <a class="link" href="#contact">Contact</a>
           <a class="btn btn-gold" href={PHONE_LINK}>📞 {PHONE_DISPLAY}</a>
@@ -486,6 +500,40 @@ const services = [
                 <a class="book" href={PHONE_LINK}>Book this style</a>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="block" id="work">
+        <div class="wrap">
+          <p class="kicker">Real work</p>
+          <h2 class="title">Styles by Joy</h2>
+          <p class="sub">
+            Recent looks from real appointments — neat parts, gentle hands, and
+            styles made to last. Yours could be next.
+          </p>
+          <div class="work-grid">
+            <figure class="work-item">
+              <img src="/gallery/boho-knotless.jpg" alt="Boho knotless braids with curly ends by Joy Braiding in Duluth, GA" loading="lazy" />
+              <figcaption>Boho knotless braids</figcaption>
+            </figure>
+            <figure class="work-item">
+              <img src="/gallery/cornrows-twists.jpg" alt="Feed-in cornrows styled into twists by Joy Braiding in Duluth, GA" loading="lazy" />
+              <figcaption>Cornrows into twists</figcaption>
+            </figure>
+            <figure class="work-item">
+              <img src="/gallery/long-twists.jpg" alt="Long twists with curly ends by Joy Braiding in Duluth, GA" loading="lazy" />
+              <figcaption>Long twists, curly ends</figcaption>
+            </figure>
+            <figure class="work-item">
+              <img src="/gallery/twists-curls.jpg" alt="Twists with curled ombre ends by Joy Braiding in Duluth, GA" loading="lazy" />
+              <figcaption>Twists with curled ends</figcaption>
+            </figure>
+            <figure class="work-item">
+              <img src="/gallery/twist-bob.jpg" alt="Cornrow twist bob by Joy Braiding in Duluth, GA" loading="lazy" />
+              <figcaption>Twist bob</figcaption>
+            </figure>
           </div>
         </div>
       </section>
